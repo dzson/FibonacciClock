@@ -64,7 +64,7 @@ public class ClockManager : MonoBehaviour
     {
         var secMultiplier = Map(time.Second, 0, 60, 0, highlight);
         var minMultiplier = Map(time.Minute, 0, 60, 0, highlight);
-        var hourMultiplier = Map(time.Hour, 0, 60, 0, highlight);
+        var hourMultiplier = Map(time.Hour, 0, 12, 0, highlight);
 
         secOffset = 52 + offset * secMultiplier;
         minOffset = 52 + offset * minMultiplier;
@@ -89,11 +89,11 @@ public class ClockManager : MonoBehaviour
 
     private void UpdateDigitalClock(DateTime time)
     {
-        digitalClock.text = ColorString(time.Hour.ToString(), hourColor)
+        digitalClock.text = ColorString(time.ToString("HH"), hourColor)
                           + ColorString(":", defaultColor)
-                          + ColorString(time.Minute.ToString(), minColor)
+                          + ColorString(time.ToString("mm"), minColor)
                           + ColorString(":", defaultColor)
-                          + ColorString(time.Second.ToString(), secColor);
+                          + ColorString(time.ToString("ss"), secColor);
     }
 
     private string ColorString(string str, Color color)
